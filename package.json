@@ -9,16 +9,36 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.24.1",
+    "@clerk/themes": "^1.7.6",
+    "@hookform/resolvers": "^3.3.1",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@uploadthing/react": "^5.6.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.279.0",
+    "mongoose": "^7.5.3",
+    "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "next": "latest"
+    "react-hook-form": "^7.46.2",
+    "svix": "^1.13.0",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss-animate": "^1.0.7",
+    "uploadthing": "^5.6.1",
+    "zod": "^3.22.2"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
     "@types/node": "latest",
+    "@types/react": "latest",
     "@types/react-dom": "latest",
+    "autoprefixer": "^10.4.16",
     "eslint": "latest",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "latest",
+    "postcss": "^8.4.30",
+    "tailwindcss": "^3.3.3",
+    "typescript": "latest"
   }
 }
