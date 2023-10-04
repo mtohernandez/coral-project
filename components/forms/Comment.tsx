@@ -12,7 +12,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import * as z from "zod";
@@ -21,7 +20,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { CommentValidation } from "@/lib/validations/thread";
 import { Input } from "../ui/input";
 import { addCommentToThread } from "@/lib/actions/thread.actions";
-// import { createThread } from "@/lib/actions/thread.actions";
 
 interface Props {
   threadId: string;

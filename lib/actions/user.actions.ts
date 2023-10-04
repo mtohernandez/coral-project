@@ -153,3 +153,68 @@ export async function getActivity(userId: string) {
     throw new Error(`Failed to fetch activity: ${error.message}`);
   }
 }
+
+export async function fetchLikeByUser(userId: string, threadId: string) {
+  try {
+    connectToDB();
+
+    const user = await fetchUser(userId);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    return user.likedThreads.includes(threadId);
+  } catch (error: any) {
+    throw new Error(`Failed to fetch like by user: ${error.message}`);
+  }
+}
+
+export async function likeThread(
+  userId: string,
+  threadId: string,
+  path: string
+) {
+  try {
+    connectToDB();
+
+    const user = await fetchUser(userId);
+    const thread = await Thread.findById(threadId);
+
+    if (!thread) {
+      throw new Error("Thread not found");
+    }
+
+    let isLiked = thread.likes.includes(user._id);
+
+    console.log("isLiked", isLiked);
+
+    if (isLiked) {
+      thread.likes = thread.likes.filter(
+        (like: any) => like.toString() !== user._id.toString()
+      );
+      user.likedThreads = user.likedThreads.filter(
+        (likedThread: any) => likedThread.toString() !== thread._id.toString()
+      );
+      isLiked = false;
+    } else {
+      thread.likes.push(user._id);
+      user.likedThreads.push(threadId);
+      isLiked = true;
+    }
+
+    console.log("thread.likes", thread.likes);
+    console.log("user.likedThreads", user.likedThreads);
+    console.log("isLiked", isLiked);
+
+    await thread.save();
+
+    await user.save();
+
+    revalidatePath(path);
+
+    return isLiked;
+  } catch (error: any) {
+    throw new Error(`Failed to like thread: ${error.message}`);
+  }
+}

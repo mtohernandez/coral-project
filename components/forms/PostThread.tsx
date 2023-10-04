@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -21,21 +19,15 @@ import { usePathname, useRouter } from "next/navigation";
 import { ThreadValidation } from "@/lib/validations/thread";
 import { createThread } from "@/lib/actions/thread.actions";
 import { useOrganization } from "@clerk/nextjs";
-// import { updateUser } from "@/lib/actions/user.actions";
+import { Input } from "../ui/input";
 
-interface Props {
-  user: {
-    id: string;
-    objectId: string;
-    username: string;
-    name: string;
-    bio: string;
-    image: string;
-  };
-  btnTitle: string;
-}
-
-function PostThread({ userId }: { userId: string }) {
+function PostThread({
+  userId,
+  currentUserImg,
+}: {
+  userId: string;
+  currentUserImg: string;
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const { organization } = useOrganization();
@@ -56,32 +48,40 @@ function PostThread({ userId }: { userId: string }) {
       path: pathname,
     });
 
-    router.push("/");
+    form.reset();
   };
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="mt-10 flex flex-col justify-start gap-10"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="comment-form">
         <FormField
           control={form.control}
           name="thread"
           render={({ field }) => (
-            <FormItem className="flex flex-col gap-3 w-full">
-              <FormLabel className="text-base-semibold text-light-2">
-                Content
+            <FormItem className="flex items-center gap-3 w-full">
+              <FormLabel>
+                <Image
+                  src={currentUserImg}
+                  alt="Profile image"
+                  width={48}
+                  height={48}
+                  className="rounded-full object-cover"
+                />
               </FormLabel>
-              <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
-                <Textarea rows={15} {...field} />
+              <FormControl className="border-none bg-transparent">
+                <Input
+                  type="text"
+                  placeholder="Start a thread..."
+                  className="no-focus text-light-1 outline-none"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="bg-primary-500">
-          Post Thread
+          Post
         </Button>
       </form>
     </Form>

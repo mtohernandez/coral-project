@@ -1,6 +1,9 @@
 import { formatDateString } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "../ui/button";
+import { fetchLikeByUser, likeThread } from "@/lib/actions/user.actions";
+import ThreadsActions from "../forms/ThreadActions";
 
 interface Props {
   id: string;
@@ -10,6 +13,7 @@ interface Props {
   author: {
     name: string;
     image: string;
+    username: string;
     id: string;
   };
   community: {
@@ -23,10 +27,11 @@ interface Props {
       image: string;
     };
   }[];
+  likes?: number;
   isComment?: boolean;
 }
 
-const ThreadCard = ({
+const ThreadCard = async ({
   id,
   currentUserId,
   parentId,
@@ -34,13 +39,16 @@ const ThreadCard = ({
   author,
   community,
   createdAt,
+  likes,
   comments,
   isComment,
 }: Props) => {
+  const isLiked = await fetchLikeByUser(currentUserId, id);
+
   return (
     <article
-      className={`flex w-full flex-col rounded-xl ${
-        isComment ? "px-0 xs:px-7" : "bg-dark-2 p-7"
+      className={`flex w-full flex-col border-t border-t-dark-2 py-7 ${
+        isComment && "px-0 xs:px-7"
       }`}
     >
       <div className="flex items-start justify-between">
@@ -57,22 +65,19 @@ const ThreadCard = ({
             <div className="thread-card_bar" />
           </div>
           <div className="flex w-full flex-col">
+            <h4 className="text-base-semibold text-light-1">{author.name}</h4>
             <Link href={`/profile/${author.id}`} className="w-fit">
-              <h4 className="cursor-pointer text-base-semibold text-light-1">
-                {author.name}
+              <h4 className="cursor-pointer text-base-medium text-gray-1">
+                @{author.username}
               </h4>
             </Link>
             <p className="mt-2 text-small-regular text-light-2">{content}</p>
             <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
-              <div className="flex gap-3.5">
-                <span className="cursor-pointer">Heart</span>
-                <span className="cursor-pointer">Repost</span>
-                <Link href={`/thread/${id}`} className="cursor-pointer">
-                  Comment
-                </Link>
-                <span className="cursor-pointer">Share</span>
-              </div>
-
+              <ThreadsActions
+                currentUserId={currentUserId}
+                threadId={id}
+                isLiked={isLiked}
+              />
               {isComment && comments.length > 0 && (
                 <Link href={`/thread/${id}`}>
                   <p className="mt-1 text-subtle-medium text-gray-1">
@@ -80,29 +85,35 @@ const ThreadCard = ({
                   </p>
                 </Link>
               )}
+              {likes && (
+                <div className="py-2">
+                  <p className="text-gray-1">{likes} likes</p>
+                </div>
+              )}
             </div>
           </div>
+          <Button className="text-light-1 bg-transparent h-min">...</Button>
         </div>
-
-        {!isComment && community && (
-          <Link
-            href={`/communities/${community.id}`}
-            className="mt-5 flex items-center"
-          >
-            <p className="text-subtle-medium text-gray-1">
-              {formatDateString(createdAt)} - {community.name} Community
-            </p>
-
-            <Image
-              src={community.image}
-              alt="Community Name"
-              width={14}
-              height={14}
-              className="ml-1 rounded-full object-cover"
-            />
-          </Link>
-        )}
       </div>
+
+      {!isComment && community && (
+        <Link
+          href={`/communities/${community.id}`}
+          className="mt-5 flex items-center"
+        >
+          <p className="text-subtle-medium text-gray-1">
+            {formatDateString(createdAt)} - {community.name} Community
+          </p>
+
+          <Image
+            src={community.image}
+            alt="Community Name"
+            width={14}
+            height={14}
+            className="ml-1 rounded-full object-cover"
+          />
+        </Link>
+      )}
     </article>
   );
 };
