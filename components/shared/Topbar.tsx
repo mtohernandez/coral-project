@@ -1,6 +1,6 @@
 "use client";
 
-import { OrganizationSwitcher, SignedIn, UserButton } from "@clerk/nextjs";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import Link from "next/link";
 
@@ -9,24 +9,14 @@ function Topbar() {
     <nav className="topbar">
       <div className="flex items-center justify-between w-full max-w-4xl ml-auto mr-auto">
         <Link href="/" className="flex">
-          <p className="text-heading3-bold text-light-1 max-xs:hidden">
-            Coral
-          </p>
+          <p className="text-heading3-bold text-light-1 max-xs:hidden">Coral</p>
         </Link>
         <div className="flex items-center gap-1">
-          <div className="block md:hidden">
+          <div className="block">
             <SignedIn>
-              <UserButton />
+              <UserButton appearance={{ baseTheme: dark }} />
             </SignedIn>
           </div>
-          <OrganizationSwitcher
-            appearance={{
-              baseTheme: dark,
-              elements: {
-                organizationSwitcherTrigger: "py-2 px-4",
-              },
-            }}
-          />
         </div>
       </div>
     </nav>

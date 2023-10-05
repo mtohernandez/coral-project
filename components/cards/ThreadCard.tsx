@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { fetchLikeByUser, likeThread } from "@/lib/actions/user.actions";
-import ThreadsActions from "../forms/ThreadActions";
+import ThreadsActions from "../thread/ThreadActions";
+import Popup from 'reactjs-popup';
+import PopupThread from "../thread/PopupThread";
 
 interface Props {
   id: string;
@@ -98,7 +100,7 @@ const ThreadCard = async ({
               </div>
             </div>
           </div>
-          <Button className="text-light-1 bg-transparent h-min">...</Button>
+          <PopupThread />
         </div>
       </div>
 
