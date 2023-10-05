@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { fetchLikeByUser, likeThread } from "@/lib/actions/user.actions";
+import { likeThread } from "@/lib/actions/user.actions";
 import { usePathname } from "next/navigation";
 
 const ThreadsActions = ({

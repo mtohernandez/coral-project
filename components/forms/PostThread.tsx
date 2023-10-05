@@ -20,6 +20,7 @@ import { ThreadValidation } from "@/lib/validations/thread";
 import { createThread } from "@/lib/actions/thread.actions";
 import { useOrganization } from "@clerk/nextjs";
 import { Input } from "../ui/input";
+import { useRef } from "react";
 
 function PostThread({
   userId,
@@ -28,7 +29,6 @@ function PostThread({
   userId: string;
   currentUserImg: string;
 }) {
-  const router = useRouter();
   const pathname = usePathname();
   const { organization } = useOrganization();
 

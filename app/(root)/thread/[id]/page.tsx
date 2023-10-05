@@ -27,34 +27,33 @@ async function page({ params }: { params: { id: string } }) {
           author={thread.author}
           community={thread.community}
           createdAt={thread.createdAt}
+          likes={thread.likes.length}
           comments={thread.children}
+          isMain
         />
       </div>
 
-      <div className="mt-7">
-        <Comment
-          threadId={thread.id}
-          currentUserImg={userInfo.image}
-          currentUserId={JSON.stringify(userInfo._id)}
-        />
-      </div>
+      <Comment
+        threadId={thread.id}
+        currentUserImg={userInfo.image}
+        currentUserId={JSON.stringify(userInfo._id)}
+      />
 
-      <div className="mt-10">
-        {thread.children.map((childItem: any) => (
-          <ThreadCard
-            key={childItem._id}
-            id={childItem._id}
-            currentUserId={user?.id || ""}
-            parentId={childItem.parentId}
-            content={childItem.text}
-            author={childItem.author}
-            community={childItem.community}
-            createdAt={childItem.createdAt}
-            comments={childItem.children}
-            isComment
-          />
-        ))}
-      </div>
+      {thread.children.map((childItem: any) => (
+        <ThreadCard
+          key={childItem._id}
+          id={childItem._id}
+          currentUserId={user?.id || ""}
+          parentId={childItem.parentId}
+          content={childItem.text}
+          author={childItem.author}
+          community={childItem.community}
+          createdAt={childItem.createdAt}
+          likes={childItem.likes.length}
+          comments={childItem.children}
+          isComment
+        />
+      ))}
     </section>
   );
 }

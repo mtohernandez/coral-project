@@ -29,6 +29,7 @@ interface Props {
   }[];
   likes?: number;
   isComment?: boolean;
+  isMain?: boolean;
 }
 
 const ThreadCard = async ({
@@ -42,13 +43,14 @@ const ThreadCard = async ({
   likes,
   comments,
   isComment,
+  isMain,
 }: Props) => {
   const isLiked = await fetchLikeByUser(currentUserId, id);
 
   return (
     <article
-      className={`flex w-full flex-col border-t border-t-dark-2 py-7 ${
-        isComment && "px-0 xs:px-7"
+      className={`flex w-full flex-col py-7 ${isComment && "px-0 xs:px-7"} ${
+        isMain ? "border-b border-b-dark-2" : "border-t border-t-dark-2"
       }`}
     >
       <div className="flex items-start justify-between">
@@ -72,24 +74,28 @@ const ThreadCard = async ({
               </h4>
             </Link>
             <p className="mt-2 text-small-regular text-light-2">{content}</p>
-            <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
+            <div className="mt-5 flex flex-col gap-3">
               <ThreadsActions
                 currentUserId={currentUserId}
                 threadId={id}
                 isLiked={isLiked}
               />
-              {isComment && comments.length > 0 && (
-                <Link href={`/thread/${id}`}>
-                  <p className="mt-1 text-subtle-medium text-gray-1">
-                    {comments.length} replies
+              <div className="flex items-center gap-3.5">
+                {likes && likes > 0 ? (
+                  <p className="text-small-regular text-gray-1">
+                    {likes} likes
                   </p>
-                </Link>
-              )}
-              {likes && (
-                <div className="py-2">
-                  <p className="text-gray-1">{likes} likes</p>
-                </div>
-              )}
+                ) : (
+                  <></>
+                )}
+                {comments.length > 0 && (
+                  <Link href={`/thread/${id}`}>
+                    <p className="text-small-regular text-gray-1">
+                      {comments.length} replies
+                    </p>
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
           <Button className="text-light-1 bg-transparent h-min">...</Button>
