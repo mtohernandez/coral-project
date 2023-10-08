@@ -39,17 +39,23 @@ async function Page({ params }: { params: { id: string } }) {
             ))}
           </TabsList>
 
-          {
-            profileTabs.map((tab) => (
-              <TabsContent key={`content-${tab.label}`} value={tab.value} className="w-full text-light-1">
-                <ThreadsTab
-                  currentUserId={user.id}
-                  accountId={userInfo.id}
-                  accountType='User'
-                />
-              </TabsContent>
-            ))
-          }
+          <TabsContent value="threads" className="w-full text-light-1">
+            <ThreadsTab
+              currentUserId={user.id}
+              accountId={userInfo.id}
+              accountType="User"
+            />
+          </TabsContent>
+          <TabsContent value="eeplies" className="w-full text-light-1">
+            <ThreadsTab
+              currentUserId={user.id}
+              accountId={userInfo.id}
+              accountType="Replies"
+            />
+          </TabsContent>
+          <TabsContent value="tagged" className="w-full text-light-1">
+            Tagged
+          </TabsContent>
         </Tabs>
       </div>
     </section>

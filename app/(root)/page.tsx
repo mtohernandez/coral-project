@@ -15,7 +15,9 @@ export default async function Home() {
 
   return (
     <>
-      <PostThread userId={userInfo._id} currentUserImg={userInfo.image} />
+      <PostThread userId={userInfo._id} currentUserImg={userInfo.image} hasImage>
+        Start thread...
+      </PostThread>
       <section className="flex flex-col">
         {result.posts.length === 0 ? (
           <p className="no-result">No threads found</p>

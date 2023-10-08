@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { fetchLikeByUser, likeThread } from "@/lib/actions/user.actions";
 import ThreadsActions from "../thread/ThreadActions";
-import Popup from 'reactjs-popup';
 import PopupThread from "../thread/PopupThread";
 
 interface Props {

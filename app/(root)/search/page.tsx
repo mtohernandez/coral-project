@@ -19,7 +19,7 @@ async function Page() {
   });
 
   return (
-    <section>
+    <section className="mt-10">
       <h1 className="head-text mb-10">Search</h1>
       <div className="mt-14 flex flex-col gap-9">
         {result.users.length === 0 ? (

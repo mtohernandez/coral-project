@@ -56,7 +56,7 @@ export async function fetchUser(userId: string) {
   }
 }
 
-export async function fetchUserPosts(userId: string) {
+export async function fetchUserPosts(userId: string, replies?: boolean) {
   try {
     connectToDB();
 
@@ -73,6 +73,13 @@ export async function fetchUserPosts(userId: string) {
         },
       },
     });
+
+    if (replies) {
+      threads.threads = threads.threads.filter(
+        (thread: any) => thread.parentId
+      );
+    }
+
     return threads;
   } catch (error: any) {
     throw new Error(`Failed to fetch user posts: ${error.message}`);
