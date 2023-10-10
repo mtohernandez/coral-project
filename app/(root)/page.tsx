@@ -23,7 +23,7 @@ export default async function Home() {
         Start thread...
       </PostThread>
       <section className="flex flex-col">
-        {userInfo.threads.length === 0 ? (
+        {result.posts.length === 0 ? (
           <p className="no-result">No threads found</p>
         ) : (
           <>
