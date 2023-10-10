@@ -5,16 +5,6 @@ export const bottomBarLinks = [
     label: "Home",
   },
   {
-    imgURL: "/assets/search.svg",
-    route: "/search",
-    label: "Search",
-  },
-  {
-    imgURL: "/assets/create.svg",
-    route: "/create-thread",
-    label: "Create Thread",
-  },
-  {
     imgURL: "/assets/user.svg",
     route: "/profile",
     label: "Profile",
@@ -24,7 +14,6 @@ export const bottomBarLinks = [
 export const profileTabs = [
   { value: "threads", label: "Threads", icon: "/assets/reply.svg" },
   { value: "replies", label: "Replies", icon: "/assets/members.svg" },
-  { value: "tagged", label: "Tagged", icon: "/assets/tag.svg" },
 ];
 
 export const communityTabs = [

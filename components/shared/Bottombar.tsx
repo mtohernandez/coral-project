@@ -4,8 +4,11 @@ import { bottomBarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { useUser } from "@clerk/nextjs";
+import Image from "next/image";
 
 function Bottombar() {
+  const { user } = useUser();
   const pathname = usePathname();
 
   return (
@@ -15,25 +18,21 @@ function Bottombar() {
           const isActive =
             (pathname.includes(link.route) && link.route.length > 1) ||
             pathname === link.route;
-          
-          if(link.label === "Create Thread") {
-            return (
-              <Button
-                key={link.label}
-                className="bottombar_link h-full"
-              >
-                <p className="text-light-1">{link.label}</p>
-              </Button>
-            );
-          }
 
           return (
             <Link
-              href={link.route}
+              href={
+                link.route === "/profile" ? `/profile/${user?.id}` : link.route
+              }
               key={link.label}
-              className={`bottombar_link ${isActive && "bg-primary-500"}`}
+              className={`bottombar_link ${isActive && "bg-neutral-200"}`}
             >
-              <p className="text-light-1">{link.label}</p>
+              <Image
+                src={link.imgURL}
+                width={24}
+                height={24}
+                alt={link.label}
+              />
             </Link>
           );
         })}

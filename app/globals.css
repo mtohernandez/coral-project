@@ -5,7 +5,7 @@
 @layer components {
   /* main */
   .main-container {
-    @apply flex min-h-screen flex-1 flex-col items-center bg-dark-1 px-6 pb-20 pt-10 max-md:pb-32 sm:px-10;
+    @apply flex min-h-screen flex-1 flex-col items-center bg-light-1 px-6 pb-20 pt-10 max-md:pb-32 sm:px-10;
   }
 
   /* Head Text */
@@ -34,7 +34,7 @@
 
   /* thread card  */
   .thread-card_bar {
-    @apply relative mt-2 w-0.5 grow rounded-full bg-neutral-800;
+    @apply relative mt-2 w-0.5 grow rounded-full bg-neutral-300;
   }
 
   /* User card */
@@ -59,11 +59,11 @@
   }
 
   .topbar {
-    @apply fixed top-0 z-30 flex w-full items-center bg-dark-1 py-3;
+    @apply fixed top-0 z-30 flex w-full items-center bg-light-1 py-3;
   }
 
   .bottombar {
-    @apply fixed bottom-0 z-10 bg-dark-1 w-full p-4 xs:px-7;
+    @apply fixed bottom-0 z-10 bg-light-1 w-full p-4 xs:px-7;
   }
 
   .bottombar_container {
@@ -131,7 +131,7 @@
 
 /* Tab */
 .tab {
-  @apply flex min-h-[50px] flex-1 items-center gap-3 bg-dark-2 text-light-2 data-[state=active]:bg-[#0e0e12] data-[state=active]:text-light-2 !important;
+  @apply flex min-h-[50px] flex-1 items-center gap-3 bg-neutral-300 text-dark-2 data-[state=active]:bg-[#AEAEAE] data-[state=active]:text-dark-2 !important;
 }
 
 .no-focus {

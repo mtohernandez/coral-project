@@ -74,10 +74,12 @@ export async function fetchUserPosts(userId: string, replies?: boolean) {
       },
     });
 
+    
+
     if (replies) {
-      threads.threads = threads.threads.filter(
-        (thread: any) => thread.parentId
-      );
+      threads.threads = threads.threads.reduce((acc: any, thread: any) => {
+        return acc.concat(thread.children);
+      }, []);
     }
 
     return threads;
@@ -209,10 +211,6 @@ export async function likeThread(
       user.likedThreads.push(threadId);
       isLiked = true;
     }
-
-    console.log("thread.likes", thread.likes);
-    console.log("user.likedThreads", user.likedThreads);
-    console.log("isLiked", isLiked);
 
     await thread.save();
 

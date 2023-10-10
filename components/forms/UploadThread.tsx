@@ -52,7 +52,7 @@ function UploadThread({ userId, currentUserImg, isOpen, closeModal }: Props) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="comment-form border p-7 rounded-3xl bg-dark-1"
+          className="comment-form border p-7 rounded-3xl bg-light-1"
         >
           <FormField
             control={form.control}
@@ -72,14 +72,14 @@ function UploadThread({ userId, currentUserImg, isOpen, closeModal }: Props) {
                   <Input
                     type="text"
                     placeholder="Start a thread..."
-                    className="no-focus text-light-1 outline-none"
+                    className="no-focus text-dark-1 outline-none"
                     {...field}
                   />
                 </FormControl>
               </FormItem>
             )}
           />
-          <Button type="submit" className="bg-primary-500">
+          <Button type="submit" className="bg-neutral-500">
             Post
           </Button>
         </form>

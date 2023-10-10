@@ -15,19 +15,23 @@ export default async function Home() {
 
   return (
     <>
-      <PostThread userId={userInfo._id} currentUserImg={userInfo.image} hasImage>
+      <PostThread
+        userId={userInfo._id}
+        currentUserImg={userInfo.image}
+        hasImage
+      >
         Start thread...
       </PostThread>
       <section className="flex flex-col">
-        {result.posts.length === 0 ? (
+        {userInfo.threads.length === 0 ? (
           <p className="no-result">No threads found</p>
         ) : (
           <>
-            {result.posts.map((post) => (
+            {result.posts.map((post: any) => (
               <ThreadCard
                 key={post._id}
                 id={post._id}
-                currentUserId={user?.id || ""}
+                currentUserId={user.id}
                 parentId={post.parentId}
                 content={post.text}
                 author={post.author}

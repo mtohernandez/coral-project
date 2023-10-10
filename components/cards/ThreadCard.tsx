@@ -51,7 +51,7 @@ const ThreadCard = async ({
   return (
     <article
       className={`flex w-full flex-col py-7 ${isComment && "px-0 xs:px-7"} ${
-        isMain ? "border-b border-b-dark-2" : "border-t border-t-dark-2"
+        isMain ? "border-b border-b-dark-2" : "border-t border-t-neutral-300"
       }`}
     >
       <div className="flex items-start justify-between">
@@ -68,13 +68,13 @@ const ThreadCard = async ({
             <div className="thread-card_bar" />
           </div>
           <div className="flex w-full flex-col">
-            <h4 className="text-base-semibold text-light-1">{author.name}</h4>
+            <h4 className="text-base-semibold text-dark-1">{author.name}</h4>
             <Link href={`/profile/${author.id}`} className="w-fit">
               <h4 className="cursor-pointer text-base-medium text-gray-1">
                 @{author.username}
               </h4>
             </Link>
-            <p className="mt-2 text-small-regular text-light-2">{content}</p>
+            <p className="mt-2 text-small-regular text-dark-1">{content}</p>
             <div className="mt-5 flex flex-col gap-3">
               <ThreadsActions
                 currentUserId={currentUserId}
@@ -99,7 +99,6 @@ const ThreadCard = async ({
               </div>
             </div>
           </div>
-          <PopupThread />
         </div>
       </div>
 

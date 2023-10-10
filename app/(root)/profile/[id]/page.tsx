@@ -46,7 +46,7 @@ async function Page({ params }: { params: { id: string } }) {
               accountType="User"
             />
           </TabsContent>
-          <TabsContent value="eeplies" className="w-full text-light-1">
+          <TabsContent value="replies" className="w-full text-light-1">
             <ThreadsTab
               currentUserId={user.id}
               accountId={userInfo.id}
