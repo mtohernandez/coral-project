@@ -51,7 +51,7 @@ const ThreadCard = async ({
   return (
     <article
       className={`flex w-full flex-col py-7 ${isComment && "px-0 xs:px-7"} ${
-        isMain ? "border-b border-b-dark-2" : "border-t border-t-neutral-300"
+        isMain ? "border-b border-b-gray-300" : "border-t border-t-neutral-300"
       }`}
     >
       <div className="flex items-start justify-between">
@@ -78,7 +78,7 @@ const ThreadCard = async ({
             <div className="mt-5 flex flex-col gap-3">
               <ThreadsActions
                 currentUserId={currentUserId}
-                threadId={id}
+                threadId={JSON.stringify(id)}
                 isLiked={isLiked}
               />
               <div className="flex items-center gap-3.5">

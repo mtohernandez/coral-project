@@ -1,5 +1,5 @@
+import { currentUser } from "@clerk/nextjs/server";
 import { fetchPosts } from "@/lib/actions/thread.actions";
-import { currentUser } from "@clerk/nextjs";
 import ThreadCard from "@/components/cards/ThreadCard";
 import PostThread from "@/components/forms/PostThread";
 import { fetchUser } from "@/lib/actions/user.actions";
@@ -16,7 +16,7 @@ export default async function Home() {
   return (
     <>
       <PostThread
-        userId={userInfo._id}
+        userId={JSON.stringify(userInfo._id)}
         currentUserImg={userInfo.image}
         hasImage
       >

@@ -131,7 +131,7 @@
 
 /* Tab */
 .tab {
-  @apply flex min-h-[50px] flex-1 items-center gap-3 bg-neutral-300 text-dark-2 data-[state=active]:bg-[#AEAEAE] data-[state=active]:text-dark-2 !important;
+  @apply flex min-h-[50px] flex-1 items-center gap-3 bg-gray-300 text-dark-2 data-[state=active]:bg-gray-600 data-[state=active]:text-light-2 !important;
 }
 
 .no-focus {
@@ -157,5 +157,5 @@
 }
 
 .comment-form_btn {
-  @apply rounded-3xl bg-primary-500 px-8 py-2 !text-small-regular text-light-1 max-xs:w-full !important;
+  @apply rounded-3xl bg-gray-500 px-8 py-2 !text-small-regular text-light-1 max-xs:w-full !important;
 }

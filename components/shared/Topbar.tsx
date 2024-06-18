@@ -14,7 +14,7 @@ function Topbar() {
         <div className="flex items-center gap-1">
           <div className="block">
             <SignedIn>
-              <UserButton appearance={{ baseTheme: dark }} />
+              <UserButton />
             </SignedIn>
           </div>
         </div>

@@ -26,7 +26,7 @@ function LeftSidebar() {
               key={link.label}
               className={`leftsidebar_link ${isActive && "bg-primary-500"}`}
             >
-              <p className="text-light-1">{link.label}</p> {/* Add Icons */}
+              <p className="text-light-1">{link.label}</p>
               <p className="text-light-1 max-lg:hidden">{link.label}</p>
             </Link>
           );

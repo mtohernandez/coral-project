@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { likeThread } from "@/lib/actions/user.actions";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const ThreadsActions = ({
   currentUserId,
@@ -16,22 +17,30 @@ const ThreadsActions = ({
   isLiked: boolean;
 }) => {
   const pathname = usePathname();
+  const [liked, setLiked] = useState(isLiked);
+
+  const parsedThreadId = JSON.parse(threadId);
 
   const handleLike = async () => {
-    isLiked = await likeThread(currentUserId, threadId, pathname);
+    setLiked(!isLiked);
+    try {
+      await likeThread(currentUserId, parsedThreadId, pathname);
+    } catch (error) {
+      setLiked(isLiked);
+    }
   };
 
   return (
     <div className="flex gap-3.5">
       <Button onClick={handleLike} className="p-0 h-min bg-transparent">
         <Image
-          src={isLiked ? "/assets/fill_heart.svg" : "/assets/heart.svg"}
+          src={liked ? "/assets/fill_heart.svg" : "/assets/heart.svg"}
           width={30}
           height={30}
           alt="heart"
         />
       </Button>
-      <Link href={`/thread/${threadId}`} className="cursor-pointer">
+      <Link href={`/thread/${parsedThreadId}`} className="cursor-pointer">
         <Image src="/assets/comment.svg" width={30} height={30} alt="comment" />
       </Link>
     </div>

@@ -3,7 +3,6 @@
 import { bottomBarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 
@@ -25,7 +24,7 @@ function Bottombar() {
                 link.route === "/profile" ? `/profile/${user?.id}` : link.route
               }
               key={link.label}
-              className={`bottombar_link ${isActive && "bg-neutral-200"}`}
+              className={`bottombar_link ${isActive && "bg-neutral-100"}`}
             >
               <Image
                 src={link.imgURL}

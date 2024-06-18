@@ -3,7 +3,7 @@ import ThreadsTab from "@/components/shared/ThreadsTab";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { profileTabs } from "@/constants";
 import { fetchUser } from "@/lib/actions/user.actions";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 async function Page({ params }: { params: { id: string } }) {
@@ -26,12 +26,12 @@ async function Page({ params }: { params: { id: string } }) {
 
       <div className="mt-9">
         <Tabs defaultValue="threads" className="w-full">
-          <TabsList className="tab">
+          <TabsList className="tab p-0">
             {profileTabs.map((tab) => (
               <TabsTrigger key={tab.label} value={tab.value} className="tab">
                 <p className="max-sm:hidden">{tab.label}</p>
                 {tab.label === "Threads" && (
-                  <p className="ml-1 rounded-sm bg-light-4 px-2 py-1 !text-tiny-medium text-light-2">
+                  <p className="rounded-sm bg-light-2 px-2 py-1 !text-tiny-medium text-dark-2">
                     {userInfo?.threads?.length}
                   </p>
                 )}
