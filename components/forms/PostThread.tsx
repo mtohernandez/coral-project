@@ -17,6 +17,8 @@ function PostThread({
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const parsedUserId = JSON.parse(userId);
+
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
 
@@ -40,7 +42,7 @@ function PostThread({
         {children}
       </button>
       <UploadThread
-        userId={userId}
+        userId={parsedUserId}
         currentUserImg={currentUserImg}
         isOpen={isOpen}
         closeModal={closeModal}

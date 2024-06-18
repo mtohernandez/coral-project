@@ -16,7 +16,9 @@ export const connectToDB = async () => {
   }
 
   try {
-    await connect(process.env.MONGODB_URL);
+    await connect(process.env.MONGODB_URL, {
+      dbName: 'threads',
+    });
 
     isConnected = true; // Set the connection status to true
     console.log("MongoDB connected");
