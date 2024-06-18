@@ -1,5 +1,5 @@
 import { fetchUser, fetchUsers, getActivity } from "@/lib/actions/user.actions";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -30,7 +30,10 @@ async function Page() {
                     className="rounded-full object-cover"
                   />
                   <p className="!text-small-regulat text-light-1">
-                    <span className="mr-1 text-primary-500">{activity.author.name}</span> replied to your thread!
+                    <span className="mr-1 text-primary-500">
+                      {activity.author.name}
+                    </span>{" "}
+                    replied to your thread!
                   </p>
                 </article>
               </Link>
